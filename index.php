@@ -1,9 +1,10 @@
 <?php
-	//verify the connection to database
+
+    //verify the connection to database
     include('dbconnection.php');
 ?>
 
-<?php 
+<?php
 	//for header in the top
 	include('header.php');
 ?>
@@ -12,4 +13,3 @@
 	//for footer in the bottom
 	include('footer.php');
 ?>
-
