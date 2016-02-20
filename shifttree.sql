@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Fev-2016 às 12:38
+-- Generation Time: 20-Fev-2016 às 15:36
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -67,7 +67,6 @@ CREATE TABLE `users` (
 
 CREATE TABLE `user_node` (
   `ID_NODE` int(11) NOT NULL,
-  `OWNER` tinyint(1) NOT NULL,
   `ID_USER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
