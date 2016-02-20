@@ -2,6 +2,7 @@
 
 	require_once('Facebook/autoload.php');
 
+
 	$fb = new Facebook\Facebook(
 		[
 		'app_id' => '1092595837459940',
@@ -16,4 +17,3 @@
 
 	echo '<a href="' . $loginUrl . '" style="color: rgb(58, 87, 149)" href="profile.html">Login with <i style="font-size:18px;padding-left:10px" class="fa fa-facebook"></i> </a>';
 ?>
-
