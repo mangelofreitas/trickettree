@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Fev-2016 às 20:26
+-- Generation Time: 20-Fev-2016 às 23:24
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -30,7 +30,8 @@ CREATE TABLE `node` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(128) NOT NULL,
   `ID_FATHER` int(11) DEFAULT NULL,
-  `DESCRIPTION` text NOT NULL
+  `DESCRIPTION` text NOT NULL,
+  `ID_USER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,19 +60,8 @@ CREATE TABLE `users` (
   `ID_FACEBOOK` bigint(20) NOT NULL,
   `USERNAME` varchar(64) NOT NULL,
   `DESCRIPTION` text,
-  `EMAIL` varchar(200),
+  `EMAIL` varchar(200) DEFAULT NULL,
   `PROFILE_PICTURE` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `user_node`
---
-
-CREATE TABLE `user_node` (
-  `ID_NODE` int(11) NOT NULL,
-  `ID_USER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -114,13 +104,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `user_node`
---
-ALTER TABLE `user_node`
-  ADD KEY `ID_NODE` (`ID_NODE`),
-  ADD KEY `ID_USER` (`ID_USER`);
-
---
 -- Indexes for table `vote`
 --
 ALTER TABLE `vote`
@@ -161,13 +144,6 @@ ALTER TABLE `node`
 --
 ALTER TABLE `tree`
   ADD CONSTRAINT `tree_ibfk_1` FOREIGN KEY (`ID_RAIZ`) REFERENCES `node` (`ID`);
-
---
--- Limitadores para a tabela `user_node`
---
-ALTER TABLE `user_node`
-  ADD CONSTRAINT `user_node_ibfk_2` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`),
-  ADD CONSTRAINT `user_node_ibfk_3` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID`);
 
 --
 -- Limitadores para a tabela `vote`
