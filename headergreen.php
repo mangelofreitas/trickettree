@@ -44,20 +44,22 @@
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content">
+      <form class="modal-content" action="create_tree.php" method="post">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Tree Creation</h4>
+
         </div>
         <div class="modal-body">
-          <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Root of the idea (ex: Music App)">  
-          <textarea class="form-control" rows="5" id="comment" placeholder="Description of the idea (if it needs one)"></textarea>
+          
+          <input type="text" class="form-control" name= "rootName" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Root of the idea (ex: Music App)" required="true">
+          <input type="text" class="form-control" name= "rootDescription" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Description of the idea">  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-primary">Grow Tree! </button>
+          <button type="submit" class="btn btn-sm btn-primary" >Grow Tree! </button>
           <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
         </div>
-      </div>
+      </form>
 
     </div>
   </div>
