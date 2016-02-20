@@ -17,20 +17,12 @@
 
         if ($conn->ping())
         {
-            echo "DAMMIT THERE IS CONNECTION";
             $_SESSION['conn'] = $conn;
         }
 
     }
 
-
-
-
-
-    #addUser(123456,"TELMO","telmo.s@gmail.com","url:cenas");
-
-    readUsers();
-
+    
 
 
 ?>

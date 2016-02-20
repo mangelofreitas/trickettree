@@ -204,6 +204,7 @@
     </aside>
 
     <?php include('footer.php');
+		unset($_SESSION['conn']);
 	?>
 
     <!-- jQuery -->
