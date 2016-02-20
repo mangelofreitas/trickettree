@@ -13,10 +13,7 @@
 	$permissions = ['public_profile'];
 	$loginUrl = $helper->getLoginUrl('http://localhost/'.$_SERVER['REQUEST_URI'].'/profile.php', $permissions);
 
-<<<<<<< HEAD
-	echo '<a href="' . $loginUrl . '" style="color: rgb(58, 87, 149)" href="profile.html">Login with <i style="font-size:18px;padding-left:10px" class="fa fa-facebook"></i> </a>'
+
+	echo '<a href="' . $loginUrl . '" style="color: rgb(58, 87, 149)" href="profile.html">Login with <i style="font-size:18px;padding-left:10px" class="fa fa-facebook"></i> </a>';
 ?>
-=======
-	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
-?>
->>>>>>> origin/master
+
