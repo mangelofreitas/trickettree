@@ -21,7 +21,7 @@
         if ($conn){
 
 
-            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`users` (`id_facebook`,`username`,`email`,`profile_picture`) VALUES (?,?,?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `users` (`ID_FACEBOOK`,`USERNAME`,`EMAIL`,`PROFILE_PICTURE`) VALUES (?,?,?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
@@ -53,26 +53,32 @@
 
             $final_array = array();
 
-            if ($results->num_rows > 0) {
-                // output data of each row
-                while($row = $results->fetch_assoc()) {
+            if ($results){
+
+                if ($results->num_rows > 0) {
+                    // output data of each row
+                    while($row = $results->fetch_assoc()) {
 
 
-                    $data_json = array(
-                                    "id" => $row["ID"],
-                                    "username" => $row["USERNAME"],
-                                    "id_facebook" => $row["ID_FACEBOOK"],
-                                    "email" => $row["EMAIL"],
+                        $data_json = array(
+                                        "id" => $row["ID"],
+                                        "username" => $row["USERNAME"],
+                                        "id_facebook" => $row["ID_FACEBOOK"],
+                                        "email" => $row["EMAIL"],
 
-                                    );
-                    array_push($final_array,$data_json);
+                                        );
+                        array_push($final_array,$data_json);
+                    }
+                    return $final_array;
+                } else {
+                    return NULL;
                 }
 
-            } else {
-                echo "0 results";
+            }
+            else {
+                return NULL;
             }
 
-            return $final_array;
         }
 
     }
@@ -83,7 +89,7 @@
 
         if ($conn){
 
-            $stmt = $conn->prepare("SELECT * from `shifttree`.`users` where `id` = ?;");
+            $stmt = $conn->prepare("SELECT * from `users` where `id` = ?;");
 
             if (!$stmt->bind_param('i', $id)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -127,7 +133,7 @@
 
         if ($conn){
 
-            $stmt = $conn->prepare("SELECT * from `shifttree`.`users` where `id_facebook` = ?;");
+            $stmt = $conn->prepare("SELECT * from `users` where `id_facebook` = ?;");
 
             if (!$stmt->bind_param('i', $id_facebook)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -169,7 +175,7 @@
 
         if ($conn){
 
-            $stmt = $conn->prepare("SELECT * from `shifttree`.`users` where `username` = ?;");
+            $stmt = $conn->prepare("SELECT * from `users` where `username` = ?;");
 
             if (!$stmt->bind_param('s', $username)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -219,7 +225,7 @@
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`node` (`name`,`id_father`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `node` (`name`,`id_father`) VALUES (?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
@@ -243,7 +249,7 @@
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`user_node` (`id_user`,`id_node`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `user_node` (`id_user`,`id_node`) VALUES (?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
@@ -268,7 +274,7 @@
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`tree` (`id_raiz`,`deadline`,`id_user`) VALUES (?,?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `tree` (`id_raiz`,`deadline`,`id_user`) VALUES (?,?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 

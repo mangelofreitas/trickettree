@@ -203,7 +203,8 @@
         </div>
     </aside>
 
-    <?php include('footer.php') ?>
+    <?php include('footer.php');
+	?>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
