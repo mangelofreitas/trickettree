@@ -49,12 +49,22 @@
     <?php include('headergreen.php') ?>
 <section id="services">
     <div class="container">
-      <div class="span3 well">
+      <div style="background-image:url(<?php echo $_SESSION['picture'] ?> )" class="span3 well profile-image">
           <center>
           <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src=<?php echo $_SESSION['picture'] ?> name="aboutme" width="140" height="140" class="img-circle"></a>
           <h3><?php echo $_SESSION['name'] ?></h3>
           <em>click my face for more</em>
-  		</center>
+					<p></p>
+					<em>Give your feedback on <?php echo $_SESSION['name'] ?></em>
+					<p></p>
+					<button type="button" class="btn btn-default btn-sm">
+		  				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:rgb(43,222,115)"></span> Upvote
+					</button>
+					<button type="button" class="btn btn-default btn-sm">
+		  				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" style="color:rgb(255,0,0)"></span> Downvote
+					</button>
+			</center>
+
       </div>
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -73,13 +83,22 @@
                           <span class="label label-info">Adobe CS 5.5</span>
                           <span class="label label-info">Microsoft Office</span>
                           <span class="label label-success">Windows XP, Vista, 7</span>
+
                       </center>
+											<p></p>
+											<center>
+												<span><button type="button" class="btn btn-sm btn-primary"> Add more </button></span>
+										  </center>
                       <hr>
                       <center>
                       <p class="text-left"><strong>Bio: </strong><br>
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
                       <br>
                       </center>
+											<center>
+												<span><button type="button" class="btn btn-sm btn-primary"> Edit bio </button></span>
+											</center>
+
                   </div>
                   <div class="modal-footer">
                       <center>
@@ -91,6 +110,106 @@
       </div>
   </div>
 </section>
+<center>
+	<h3> Projects Involved </h3>
+</center>
+<section class="no-padding" id="portfolio">
+		<div class="container-fluid">
+				<div class="row no-gutter">
+						<div class="col-lg-4 col-sm-6">
+								<a href="#" class="portfolio-box">
+										<img src="img/portfolio/1.jpg" class="img-responsive" alt="">
+										<div class="portfolio-box-caption">
+												<div class="portfolio-box-caption-content">
+														<div class="project-category text-faded">
+																Category
+														</div>
+														<div class="project-name">
+																Project Name
+														</div>
+												</div>
+										</div>
+								</a>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+								<a href="#" class="portfolio-box">
+										<img src="img/portfolio/2.jpg" class="img-responsive" alt="">
+										<div class="portfolio-box-caption">
+												<div class="portfolio-box-caption-content">
+														<div class="project-category text-faded">
+																Category
+														</div>
+														<div class="project-name">
+																Project Name
+														</div>
+												</div>
+										</div>
+								</a>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+								<a href="#" class="portfolio-box">
+										<img src="img/portfolio/3.jpg" class="img-responsive" alt="">
+										<div class="portfolio-box-caption">
+												<div class="portfolio-box-caption-content">
+														<div class="project-category text-faded">
+																Category
+														</div>
+														<div class="project-name">
+																Project Name
+														</div>
+												</div>
+										</div>
+								</a>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+								<a href="#" class="portfolio-box">
+										<img src="img/portfolio/4.jpg" class="img-responsive" alt="">
+										<div class="portfolio-box-caption">
+												<div class="portfolio-box-caption-content">
+														<div class="project-category text-faded">
+																Category
+														</div>
+														<div class="project-name">
+																Project Name
+														</div>
+												</div>
+										</div>
+								</a>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+								<a href="#" class="portfolio-box">
+										<img src="img/portfolio/5.jpg" class="img-responsive" alt="">
+										<div class="portfolio-box-caption">
+												<div class="portfolio-box-caption-content">
+														<div class="project-category text-faded">
+																Category
+														</div>
+														<div class="project-name">
+																Project Name
+														</div>
+												</div>
+										</div>
+								</a>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+								<a href="#" class="portfolio-box">
+										<img src="img/portfolio/6.jpg" class="img-responsive" alt="">
+										<div class="portfolio-box-caption">
+												<div class="portfolio-box-caption-content">
+														<div class="project-category text-faded">
+																Category
+														</div>
+														<div class="project-name">
+																Project Name
+														</div>
+												</div>
+										</div>
+								</a>
+						</div>
+				</div>
+		</div>
+</section>
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -69,7 +69,7 @@
                                         );
                         array_push($final_array,$data_json);
                     }
-
+                    
                     return $final_array;
                 } else {
                     return NULL;

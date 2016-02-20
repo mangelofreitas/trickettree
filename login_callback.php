@@ -82,7 +82,6 @@
 			addUser($simpleNode["id"],$simpleNode["name"],$simpleNode["email"],$simpleNode["picture"]["url"]);
 	}
 
-	print_r($user);
 
 
 	//echo '<br>Logged in as ' . $userNode->getName().'<br>Picture '.$simpleNode->getField('country')//.'<br>City: '.$locationNode->getCity().'<br>Country: '.$locationNode->getCountry();
