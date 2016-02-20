@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Fev-2016 às 21:12
+-- Generation Time: 20-Fev-2016 às 12:38
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -71,6 +71,19 @@ CREATE TABLE `user_node` (
   `ID_USER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vote`
+--
+
+CREATE TABLE `vote` (
+  `ID_USER` int(11) NOT NULL,
+  `ID_NODE` int(11) NOT NULL,
+  `COUNTER` int(11) NOT NULL DEFAULT '0',
+  `LIKES` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -103,6 +116,13 @@ ALTER TABLE `users`
 ALTER TABLE `user_node`
   ADD KEY `ID_NODE` (`ID_NODE`),
   ADD KEY `ID_USER` (`ID_USER`);
+
+--
+-- Indexes for table `vote`
+--
+ALTER TABLE `vote`
+  ADD KEY `ID_USER` (`ID_USER`),
+  ADD KEY `ID_NODE` (`ID_NODE`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -145,6 +165,13 @@ ALTER TABLE `tree`
 ALTER TABLE `user_node`
   ADD CONSTRAINT `user_node_ibfk_2` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`),
   ADD CONSTRAINT `user_node_ibfk_3` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID`);
+
+--
+-- Limitadores para a tabela `vote`
+--
+ALTER TABLE `vote`
+  ADD CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID`),
+  ADD CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
