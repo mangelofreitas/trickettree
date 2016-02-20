@@ -22,8 +22,9 @@
                         </div>
                     </form>
                 </div>
-                <li class="active"><a href="communitytree.html">Community Tree</a></li>
-                <li class="active"><a href="treecreation.html">Create Tree</a></li>
+                <li class="active"><a href="communitytree.php">Community Tree</a></li>
+                <li class="active"><a href="#" data-toggle="modal" data-target="#createModal">Create Tree</a></li>
+
                 <li class="login"><?php if(!isset($_SESSION['loggedin']))
                                         {
                                             include('login.php');
@@ -40,3 +41,24 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
+ <div class="modal fade" id="createModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tree Creation</h4>
+        </div>
+        <div class="modal-body">
+          <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Root of the idea (ex: Music App)">  
+          <textarea class="form-control" rows="5" id="comment" placeholder="Description of the idea (if it needs one)"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-primary">Grow Tree! </button>
+          <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>

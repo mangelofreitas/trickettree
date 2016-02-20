@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +37,10 @@
 </head>
 
 <body id="page-top">
- <?php include('headergreen.php') ?>
+
+    <?php include('headergreen.php') ?>
+
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -49,7 +49,7 @@
                 <h1><kbd>Start your own Tree or join others creating something unique! </kbd></h1>
                 <hr>
                 <p><kbd>Join our community by providing ideas and your knowledge, maybe find some coworkers for your projects</kbd> </p>
-                <a href="profile.html" class="btn btn-primary btn-xl page-scroll">Join us now!</a>
+                
             </div>
         </div>
     </header>
@@ -198,6 +198,8 @@
 		    	$(this).html(event.strftime('%w weeks %d days <br /> %H:%M:%S'));
 		  	});
 		</script>
+		
+
 
 </body>
 
