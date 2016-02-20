@@ -1,5 +1,4 @@
 <?php
-	session_start();
 
 	require_once('Facebook/autoload.php');
 
@@ -24,13 +23,10 @@
 	{
 		echo 'Facebook SDK returned an error: '.$e->getMessage();
 	}
-
 	if(isset($accessToken))
 	{
 		$_SESSION['facebook_access_token'] = (string) $accessToken;
-		echo 'Successfully logged in!';
 	}
-
 	$oAuth2Client = $fb->getOAuth2Client();
 
 	try
@@ -61,16 +57,19 @@
 	}
 	foreach ($simpleNode as $key => $value)
 	{
-		if($key == 'picture')
+		if($key == 'name')
+		{
+			$_SESSION['name'] = $value;
+		}
+		else if($key == 'picture')
 		{
 			foreach ($value as $keyP => $valueP)
 			{
-				echo '<br>'.$keyP.' '.$valueP;
+				if($keyP == 'url')
+				{
+					$_SESSION['picture'] = $valueP;
+				}
 			}
-		}
-		else
-		{
-			echo '<br>'.$key.' '.$value;
 		}
 	}
 	//echo '<br>Logged in as ' . $userNode->getName().'<br>Picture '.$simpleNode->getField('country')//.'<br>City: '.$locationNode->getCity().'<br>Country: '.$locationNode->getCountry();
