@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Fev-2016 às 15:36
+-- Generation Time: 20-Fev-2016 às 16:00
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -42,7 +42,7 @@ CREATE TABLE `tree` (
   `ID` bigint(20) UNSIGNED NOT NULL,
   `ID_RAIZ` int(11) NOT NULL,
   `CREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `DEADLINE` date NOT NULL,
+  `DEADLINE` datetime NOT NULL,
   `ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
   `ID_USER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -56,7 +56,9 @@ CREATE TABLE `tree` (
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `USERNAME` varchar(64) NOT NULL,
-  `DESCRIPTION` text
+  `DESCRIPTION` text,
+  `EMAIL` varchar(200) NOT NULL,
+  `PROFILE_PICTURE` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
