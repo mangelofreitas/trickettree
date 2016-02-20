@@ -13,7 +13,7 @@
     }
 
 
-    function addUser($id_facebook,$username,$email,$profile_picture){
+    function addUser($name, $description){
 
 
         $conn = getConn();
@@ -21,14 +21,14 @@
         if ($conn){
 
 
-            if (!($stmt = $conn->prepare("INSERT INTO `users` (`ID_FACEBOOK`,`USERNAME`,`EMAIL`,`PROFILE_PICTURE`) VALUES (?,?,?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`users` (`username`,`description`) VALUES (?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
 
             /* Prepared statement, stage 2: bind and execute */
 
-            if (!$stmt->bind_param('isss', $id_facebook,$username,$email,$profile_picture)) {
+            if (!$stmt->bind_param('ss', $name,$description)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
             }
 
@@ -50,35 +50,14 @@
 
         if ($conn){
             $results = $conn->query("SELECT * FROM `users`");
-
-            $final_array = array();
-
-            if ($results){
-
-                if ($results->num_rows > 0) {
-                    // output data of each row
-                    while($row = $results->fetch_assoc()) {
-
-
-                        $data_json = array(
-                                        "id" => $row["ID"],
-                                        "username" => $row["USERNAME"],
-                                        "id_facebook" => $row["ID_FACEBOOK"],
-                                        "email" => $row["EMAIL"],
-
-                                        );
-                        array_push($final_array,$data_json);
-                    }
-                    return $final_array;
-                } else {
-                    return NULL;
+            if ($results->num_rows > 0) {
+                // output data of each row
+                while($row = $results->fetch_assoc()) {
+                    echo "id: " . $row["ID"]. " - Name: " . $row["USERNAME"]. "<br>";
                 }
-
+            } else {
+                echo "0 results";
             }
-            else {
-                return NULL;
-            }
-
         }
 
     }
@@ -89,7 +68,7 @@
 
         if ($conn){
 
-            $stmt = $conn->prepare("SELECT * from `users` where `id` = ?;");
+            $stmt = $conn->prepare("SELECT * from `shifttree`.`users` where `id` = ?;");
 
             if (!$stmt->bind_param('i', $id)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -101,71 +80,14 @@
 
             $results = $stmt->get_result();
 
-            $final_array = array();
-
             if ($results->num_rows > 0) {
                 // output data of each row
                 while($row = $results->fetch_assoc()) {
-                    $data_json = array(
-                                    "id" => $row["ID"],
-                                    "username" => $row["USERNAME"],
-                                    "id_facebook" => $row["ID_FACEBOOK"],
-                                    "email" => $row["EMAIL"],
-
-                    );
-
-                    array_push($final_array,$data_json);
-
-                }
-                return $final_array;
-
-
-
-            } else {
-                echo "0 results";
-            }
-        }
-    }
-
-    function readUserfromFacebook_id($id_facebook) {
-
-        $conn = getConn();
-
-        if ($conn){
-
-            $stmt = $conn->prepare("SELECT * from `users` where `id_facebook` = ?;");
-
-            if (!$stmt->bind_param('i', $id_facebook)) {
-                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-            if (!$stmt->execute()) {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-            $results = $stmt->get_result();
-
-            $final_array = array();
-
-            if ($results->num_rows > 0) {
-                // output data of each row
-
-                while($row = $results->fetch_assoc()) {
-                    $data_json = array(
-                                    "id" => $row["ID"],
-                                    "username" => $row["USERNAME"],
-                                    "id_facebook" => $row["ID_FACEBOOK"],
-                                    "email" => $row["EMAIL"],
-
-                    );
-
-                    array_push($final_array,$data_json);
-
+                    echo "id: " . $row["ID"]. " - Name: " . $row["USERNAME"]. "<br>";
                 }
             } else {
                 echo "0 results";
             }
-            return $final_array;
         }
     }
 
@@ -175,7 +97,7 @@
 
         if ($conn){
 
-            $stmt = $conn->prepare("SELECT * from `users` where `username` = ?;");
+            $stmt = $conn->prepare("SELECT * from `shifttree`.`users` where `username` = ?;");
 
             if (!$stmt->bind_param('s', $username)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -187,35 +109,15 @@
 
             $results = $stmt->get_result();
 
-
-            $final_array = array();
-
             if ($results->num_rows > 0) {
                 // output data of each row
-
                 while($row = $results->fetch_assoc()) {
-
-                    $data_json = array(
-                                    "id" => $row["ID"],
-                                    "username" => $row["USERNAME"],
-                                    "id_facebook" => $row["ID_FACEBOOK"],
-                                    "email" => $row["EMAIL"],
-
-                    );
-
-                    array_push($final_array,$data_json);
-
-
-
+                    echo "id: " . $row["ID"]. " - Name: " . $row["USERNAME"]. "<br>";
                 }
             } else {
                 echo "0 results";
             }
-
-            return $final_array;
-
         }
-
     }
 
 
@@ -225,7 +127,7 @@
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `node` (`name`,`id_father`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`node` (`name`,`id_father`) VALUES (?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
@@ -249,7 +151,7 @@
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `user_node` (`id_user`,`id_node`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`user_node` (`id_user`,`id_node`) VALUES (?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
@@ -274,7 +176,7 @@
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `tree` (`id_raiz`,`deadline`,`id_user`) VALUES (?,?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`tree` (`id_raiz`,`deadline`,`id_user`) VALUES (?,?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 

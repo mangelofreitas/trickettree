@@ -1,5 +1,7 @@
 <?php
 
+
+
     include('queries.php');
 
     if(!isset($_SESSION['conn'])){
@@ -14,15 +16,10 @@
         // Create connection
         $conn = new mysqli($servername, $username, $password,$dbname);
 
-
         if ($conn->ping())
         {
             $_SESSION['conn'] = $conn;
         }
-
     }
-
-    
-
 
 ?>

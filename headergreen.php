@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top" style="color:rgb(43,222,115)">Tree Baking</a>
+            <a class="navbar-brand page-scroll" href="index.php" style="color:rgb(43,222,115)">Tree Baking</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

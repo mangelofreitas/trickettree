@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Notifications</a></li>
+                <li class="active"><a href="index.php">Notifications</a></li>
                 <div class="col-sm-3 col-md-3">
                     <form class="navbar-form" role="search">
                         <div class="input-group">
@@ -23,7 +23,7 @@
                     </form>
                 </div>
                 <li class="active"><a href="communitytree.html">Community Tree</a></li>
-                <li class="active"><a href="treecreation.php">Create Tree</a></li>
+                <li class="active"><a href="treecreation.html">Create Tree</a></li>
                 <li class="login"><?php if(!isset($_SESSION['loggedin']))
                                         {
                                             include('login.php');

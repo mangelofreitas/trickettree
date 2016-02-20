@@ -46,9 +46,9 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1>Start your own Tree or join others creating something unique! </h1>
+                <h1><kbd>Start your own Tree or join others creating something unique! </kbd></h1>
                 <hr>
-                <p>Join our community by providing ideas and your knowledge, maybe find some coworkers for your projects </p>
+                <p><kbd>Join our community by providing ideas and your knowledge, maybe find some coworkers for your projects</kbd> </p>
                 <a href="profile.html" class="btn btn-primary btn-xl page-scroll">Join us now!</a>
             </div>
         </div>
@@ -58,43 +58,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">Community tree available in:</h2>
                     <hr class="primary">
+										<h1 id="countdown"></h1>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </section>
 
     <section class="no-padding" id="portfolio">
@@ -203,9 +173,7 @@
         </div>
     </aside>
 
-    <?php include('footer.php');
-		unset($_SESSION['conn']);
-	?>
+    <?php include('footer.php') ?>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -220,6 +188,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
+
+		<script src="js/jquery.countdown.min.js"></script>
+
+		<script type="text/javascript">
+		  	$('#countdown').countdown('2016/03/20', function(event)
+				{
+		    	$(this).html(event.strftime('%w weeks %d days <br /> %H:%M:%S'));
+		  	});
+		</script>
 
 </body>
 
