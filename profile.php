@@ -46,7 +46,7 @@
 
 <body id="page-top">
 
-    <?php include('header.php') ?>
+    <?php include('headergreen.php') ?>
 <section id="services">
     <div class="container">
       <div class="span3 well">
