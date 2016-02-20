@@ -12,7 +12,7 @@
 
 	$helper = $fb->getRedirectLoginHelper();
 	$permissions = ['public_profile'];
-	$loginUrl = $helper->getLoginUrl('http://localhost/tricktree/login_callback.php', $permissions);
+	$loginUrl = $helper->getLoginUrl('http://localhost/'.$_SERVER['REQUEST_URI'].'/login_callback.php', $permissions);
 
 	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 ?>
