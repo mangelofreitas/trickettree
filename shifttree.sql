@@ -55,10 +55,10 @@ CREATE TABLE `tree` (
 
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
-  `ID_FACEBOOK` int(32) NOT NULL,
+  `ID_FACEBOOK` bigint(20) NOT NULL,
   `USERNAME` varchar(64) NOT NULL,
   `DESCRIPTION` text,
-  `EMAIL` varchar(200) NOT NULL,
+  `EMAIL` varchar(200),
   `PROFILE_PICTURE` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

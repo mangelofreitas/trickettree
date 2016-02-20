@@ -69,6 +69,7 @@
                                         );
                         array_push($final_array,$data_json);
                     }
+
                     return $final_array;
                 } else {
                     return NULL;
@@ -151,6 +152,7 @@
                 // output data of each row
 
                 while($row = $results->fetch_assoc()) {
+
                     $data_json = array(
                                     "id" => $row["ID"],
                                     "username" => $row["USERNAME"],
@@ -162,11 +164,10 @@
                     array_push($final_array,$data_json);
 
                 }
-            } else {
-                echo "0 results";
-            }
             return $final_array;
+            } else {}
         }
+        return NULL;
     }
 
     function readUserfromName($username) {
