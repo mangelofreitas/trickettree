@@ -2,7 +2,10 @@
 	session_start();
 	//verify the connection to database
     include('dbconnection.php');
-    include('login_callback.php');
+    if(!isset($_SESSION['loggedin']))
+    {
+        include('login_callback.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +92,6 @@
   </div>
 </section>
 
-<?php include('footer.php') ?>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

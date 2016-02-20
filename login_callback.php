@@ -55,6 +55,7 @@
 	  echo 'Facebook SDK returned an error: ' . $e->getMessage();
 	  exit;
 	}
+	$_SESSION['loggedin'] = 'True';
 	foreach ($simpleNode as $key => $value)
 	{
 		if($key == 'name')

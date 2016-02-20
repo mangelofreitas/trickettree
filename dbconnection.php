@@ -10,7 +10,9 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "shiftTree";
+
+        $dbname = "shifttree";
+
         // Create connection
         $conn = new mysqli($servername, $username, $password,$dbname);
 
