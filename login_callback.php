@@ -1,8 +1,8 @@
 <?php
 	session_start();
 
-	require_once('/Facebook/autoload.php');
-	
+	require_once('Facebook/autoload.php');
+
 	$fb = new Facebook\Facebook(
 		[
 		'app_id' => '1092595837459940',
@@ -33,16 +33,16 @@
 
 	$oAuth2Client = $fb->getOAuth2Client();
 
-	try 
+	try
 	{
 	  	$accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
 	}
-	catch(Facebook\Exceptions\FacebookSDKException $e) 
+	catch(Facebook\Exceptions\FacebookSDKException $e)
 	{
 		echo 'Facebook SDK Exception: '.$e->getMessage();
 	  	exit;
 	}
-	
+
 	$fb->setDefaultAccessToken($accessToken);
 
 	try {
@@ -59,11 +59,11 @@
 	  echo 'Facebook SDK returned an error: ' . $e->getMessage();
 	  exit;
 	}
-	foreach ($simpleNode as $key => $value) 
+	foreach ($simpleNode as $key => $value)
 	{
 		if($key == 'picture')
 		{
-			foreach ($value as $keyP => $valueP) 
+			foreach ($value as $keyP => $valueP)
 			{
 				echo '<br>'.$keyP.' '.$valueP;
 			}
@@ -74,5 +74,5 @@
 		}
 	}
 	//echo '<br>Logged in as ' . $userNode->getName().'<br>Picture '.$simpleNode->getField('country')//.'<br>City: '.$locationNode->getCity().'<br>Country: '.$locationNode->getCountry();
-	
+
 ?>
