@@ -4,12 +4,8 @@
 
     include('queries.php');
 
-    if(isset($_SESSION['conn']))
-    {
-        echo "DAMMIT";
-    }
+    if(!isset($_SESSION['conn'])){
 
-    else {
 
         $servername = "localhost";
         $username = "root";
@@ -33,7 +29,7 @@
     #createNode('FUCKING IDEA',NULL);
     #createTree(1,'',2)
 
-    createUserNodeRelation(2,1);
+    #createUserNodeRelation(2,1);
 
 
 ?>
