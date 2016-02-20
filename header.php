@@ -24,7 +24,15 @@
                 </div>
                 <li class="active"><a href="communitytree.html">Community Tree</a></li>
                 <li class="active"><a href="treecreation.html">Create Tree</a></li>
-                <li class="login"><?php include('login.php') ?></li>
+                <li class="login"><?php if(!isset($_SESSION['loggedin']))
+                                        {
+                                            include('login.php');
+                                        }
+                                        else
+                                        {
+                                            echo '<a href="logout.php" style="color: rgb(58, 87, 149)" href="profile.html">Log Out<i style="font-size:18px;padding-left:10px" class="fa fa-facebook"></i> </a>';
+                                        }
+                                        ?></li>
 
             </ul>
         </div>
