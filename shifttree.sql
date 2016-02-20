@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Fev-2016 às 16:00
+-- Generation Time: 20-Fev-2016 às 16:08
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -55,6 +55,7 @@ CREATE TABLE `tree` (
 
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
+  `ID_FACEBOOK` int(32) NOT NULL,
   `USERNAME` varchar(64) NOT NULL,
   `DESCRIPTION` text,
   `EMAIL` varchar(200) NOT NULL,
