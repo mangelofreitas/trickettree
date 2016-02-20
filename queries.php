@@ -13,7 +13,7 @@
     }
 
 
-    function addUser($name, $description){
+    function addUser($id_facebook,$username,$email,$profile_picture){
 
 
         $conn = getConn();
@@ -21,14 +21,14 @@
         if ($conn){
 
 
-            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`users` (`username`,`description`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`users` (`id_facebook`,`username`,`email`,`profile_picture`) VALUES (?,?,?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
 
             /* Prepared statement, stage 2: bind and execute */
 
-            if (!$stmt->bind_param('ss', $name,$description)) {
+            if (!$stmt->bind_param('isss', $id_facebook,$username,$email,$profile_picture)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
             }
 
@@ -50,14 +50,29 @@
 
         if ($conn){
             $results = $conn->query("SELECT * FROM `users`");
+
+            $final_array = array();
+
             if ($results->num_rows > 0) {
                 // output data of each row
                 while($row = $results->fetch_assoc()) {
-                    echo "id: " . $row["ID"]. " - Name: " . $row["USERNAME"]. "<br>";
+
+
+                    $data_json = array(
+                                    "id" => $row["ID"],
+                                    "username" => $row["USERNAME"],
+                                    "id_facebook" => $row["ID_FACEBOOK"],
+                                    "email" => $row["EMAIL"],
+
+                                    );
+                    array_push($final_array,$data_json);
                 }
+
             } else {
                 echo "0 results";
             }
+
+            return $final_array;
         }
 
     }
@@ -80,14 +95,71 @@
 
             $results = $stmt->get_result();
 
+            $final_array = array();
+
             if ($results->num_rows > 0) {
                 // output data of each row
                 while($row = $results->fetch_assoc()) {
-                    echo "id: " . $row["ID"]. " - Name: " . $row["USERNAME"]. "<br>";
+                    $data_json = array(
+                                    "id" => $row["ID"],
+                                    "username" => $row["USERNAME"],
+                                    "id_facebook" => $row["ID_FACEBOOK"],
+                                    "email" => $row["EMAIL"],
+
+                    );
+
+                    array_push($final_array,$data_json);
+
+                }
+                return $final_array;
+
+
+
+            } else {
+                echo "0 results";
+            }
+        }
+    }
+
+    function readUserfromFacebook_id($id_facebook) {
+
+        $conn = getConn();
+
+        if ($conn){
+
+            $stmt = $conn->prepare("SELECT * from `shifttree`.`users` where `id_facebook` = ?;");
+
+            if (!$stmt->bind_param('i', $id_facebook)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            $results = $stmt->get_result();
+
+            $final_array = array();
+
+            if ($results->num_rows > 0) {
+                // output data of each row
+
+                while($row = $results->fetch_assoc()) {
+                    $data_json = array(
+                                    "id" => $row["ID"],
+                                    "username" => $row["USERNAME"],
+                                    "id_facebook" => $row["ID_FACEBOOK"],
+                                    "email" => $row["EMAIL"],
+
+                    );
+
+                    array_push($final_array,$data_json);
+
                 }
             } else {
                 echo "0 results";
             }
+            return $final_array;
         }
     }
 
@@ -109,15 +181,35 @@
 
             $results = $stmt->get_result();
 
+
+            $final_array = array();
+
             if ($results->num_rows > 0) {
                 // output data of each row
+
                 while($row = $results->fetch_assoc()) {
-                    echo "id: " . $row["ID"]. " - Name: " . $row["USERNAME"]. "<br>";
+
+                    $data_json = array(
+                                    "id" => $row["ID"],
+                                    "username" => $row["USERNAME"],
+                                    "id_facebook" => $row["ID_FACEBOOK"],
+                                    "email" => $row["EMAIL"],
+
+                    );
+
+                    array_push($final_array,$data_json);
+
+
+
                 }
             } else {
                 echo "0 results";
             }
+
+            return $final_array;
+
         }
+
     }
 
 
