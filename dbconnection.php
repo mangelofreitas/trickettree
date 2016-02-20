@@ -30,6 +30,10 @@
     #addUser("JONAS","phpcenas");
     #readUserfromID(2);
     #readUserfromName("Telmo");
-    createNode('FUCKING IDEA',NULL);
-    createTree(1,'',2)
+    #createNode('FUCKING IDEA',NULL);
+    #createTree(1,'',2)
+
+    createUserNodeRelation(2,1);
+
+
 ?>

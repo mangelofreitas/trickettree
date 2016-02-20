@@ -143,17 +143,38 @@
             $stmt->close();
 
         }
+    }
 
+    function createUserNodeRelation($id_user,$id_node){
 
+        $conn = getConn();
+
+        if ($conn){
+
+            if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`user_node` (`id_user`,`id_node`) VALUES (?,?)"))) {
+                echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+            }
+
+            if (!$stmt->bind_param('ii',$id_user, $id_node)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+
+            }
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            $stmt->close();
+
+        }
 
     }
+
 
     function createTree($id_raiz,$deadline,$id_user){
 
         $conn = getConn();
 
         if ($conn){
-
 
             if (!($stmt = $conn->prepare("INSERT INTO `shifttree`.`tree` (`id_raiz`,`deadline`,`id_user`) VALUES (?,?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
