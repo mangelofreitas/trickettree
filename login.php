@@ -1,5 +1,4 @@
 <?php
-	session_start();
 
 	require_once('/Facebook/autoload.php');
 	
@@ -12,7 +11,7 @@
 
 	$helper = $fb->getRedirectLoginHelper();
 	$permissions = ['public_profile'];
-	$loginUrl = $helper->getLoginUrl('http://localhost/'.$_SERVER['REQUEST_URI'].'/login_callback.php', $permissions);
+	$loginUrl = $helper->getLoginUrl('http://localhost/'.$_SERVER['REQUEST_URI'].'/profile.php', $permissions);
 
-	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+	echo '<a href="' . $loginUrl . '" style="color: rgb(58, 87, 149)" href="profile.html">Login with <i style="font-size:18px;padding-left:10px" class="fa fa-facebook"></i> </a>'
 ?>
