@@ -49,7 +49,7 @@
     <?php include('headergreen.php') ?>
 <section id="services">
     <div class="container">
-      <div style="background-image:url(<?php echo $_SESSION['picture'] ?> )" class="span3 well profile-image">
+      <div style="background-image:url(<?php echo $_SESSION['picture'] ?> )" class="profile-image span3 well">
           <center>
           <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src=<?php echo $_SESSION['picture'] ?> name="aboutme" width="140" height="140" class="img-circle"></a>
           <h3><?php echo $_SESSION['name'] ?></h3>
