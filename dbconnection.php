@@ -2,6 +2,8 @@
 
 <?php
 
+    include('queries.php');
+
     if(isset($_SESSION['conn']))
     {
         echo "DAMMIT";
@@ -23,10 +25,11 @@
         }
 
 
-
-        require ('queries.php');
-
-
     }
-
+    #readUsers();
+    #addUser("JONAS","phpcenas");
+    #readUserfromID(2);
+    #readUserfromName("Telmo");
+    createNode('FUCKING IDEA',NULL);
+    createTree(1,'',2)
 ?>
