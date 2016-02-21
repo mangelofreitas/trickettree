@@ -23,12 +23,8 @@
                     </form>
                 </div>
                 <li class="active"><a href="communitytree.php">Community Tree</a></li>
-<<<<<<< HEAD
-                <li class="active"><a href="treecreation.php">Create Tree</a></li>
-=======
                 <li class="active"><a href="#" data-toggle="modal" data-target="#createModal">Create Tree</a></li>
 
->>>>>>> 1acbbc3ce7ea60363eeeb821de95f22891728ae2
                 <li class="login"><?php if(!isset($_SESSION['loggedin']))
                                         {
                                             include('login.php');
@@ -56,9 +52,9 @@
 
         </div>
         <div class="modal-body">
-          
+
           <input type="text" class="form-control" name= "rootName" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Root of the idea (ex: Music App)" required="true">
-          <input type="text" class="form-control" name= "rootDescription" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Description of the idea">  
+          <input type="text" class="form-control" name= "rootDescription" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Description of the idea">
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-sm btn-primary" >Grow Tree! </button>

@@ -1,5 +1,5 @@
 
-var margin = {top: 0, right: 320, bottom: 0, left: 0},
+var margin = {top: 200, right: 220, bottom: 0, left: 100},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -35,21 +35,21 @@ d3.json("tree.json", function(error, json) {
       .attr("class", "name")
       .attr("x", 8)
       .attr("y", -6)
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.idea; });
 
   node.append("text")
       .attr("x", 8)
       .attr("y", 8)
       .attr("dy", ".71em")
       .attr("class", "about lifespan")
-      .text(function(d) { return d.born + "–" + d.died; });
+      .text(function(d) { return "likes = " + d.likes + " dislikes = " + d.dislikes; });
 
   node.append("text")
       .attr("x", 8)
       .attr("y", 8)
       .attr("dy", "1.86em")
       .attr("class", "about location")
-      .text(function(d) { return d.location; });
+      .text(function(d) { return d.username; });
 });
 
 function elbow(d, i) {

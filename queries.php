@@ -15,7 +15,6 @@
 
     }
 
-
     function addUser($id_facebook,$username,$email,$profile_picture){
 
 
@@ -87,51 +86,8 @@
 
     }
 
-    function readUserfromID($id) {
 
-        $conn = getConn();
-
-        if ($conn){
-
-            $stmt = $conn->prepare("SELECT * from `users` where `id` = ?;");
-
-            if (!$stmt->bind_param('i', $id)) {
-                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-            if (!$stmt->execute()) {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-            $results = $stmt->get_result();
-
-            $final_array = array();
-
-            if ($results->num_rows > 0) {
-                // output data of each row
-                while($row = $results->fetch_assoc()) {
-                    $data_json = array(
-                                    "id" => $row["ID"],
-                                    "username" => $row["USERNAME"],
-                                    "id_facebook" => $row["ID_FACEBOOK"],
-                                    "email" => $row["EMAIL"],
-
-                    );
-
-                    array_push($final_array,$data_json);
-
-                }
-                return $final_array;
-
-
-
-            } else {
-                echo "0 results";
-            }
-        }
-    }
-
-    function readUserfromFacebook_id($id_facebook) {
+    function readUserFromFacebookID($id_facebook) {
 
         $conn = getConn();
 
@@ -223,23 +179,81 @@
     }
 
 
-    function createNode($name,$id_father){
+    function createNodeSons($id_node,$id_son){
 
         $conn = getConn();
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `node` (`name`,`id_father`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("INSERT INTO `node_sons` (`id_node`,`id_son`) VALUES (?,?)"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
-            if (!$stmt->bind_param('ss',$name, $id_father)) {
+            if (!$stmt->bind_param('ii',$id_node,$id_son)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
             }
 
 
             if (!$stmt->execute()) {
                 echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+
+            }
+            $stmt->close();
+
+        }
+
+    }
+
+    function getLastNode(){
+        $conn = getConn();
+
+        if ($conn){
+
+            $results = $conn->query("SELECT * from `node` order by `ID` DESC limit 1;");
+
+
+            if ($results){
+                if ($results->num_rows > 0) {
+                    // output data of each row
+                    while($row = $results->fetch_assoc()) {
+
+                        return $row["ID"];
+                    }
+
+                } else {
+                    return NULL;
+                }
+
+            }
+            else {
+                return NULL;
+            }
+
+        }
+
+    }
+
+    function createNode($id_user,$id_father,$name,$description){
+
+        $conn = getConn();
+
+        if ($conn){
+
+            if (!($stmt = $conn->prepare("INSERT INTO `node` (`id_user`,`id_father`,`name`,`description`) VALUES (?,?,?,?)"))) {
+                echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+            }
+
+            if (!$stmt->bind_param('iiss',$id_user,$id_father,$name,$description)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            $id_son = getLastNode();
+            if ($id_father != NULL){
+                createNodeSons($id_father,$id_son);
             }
 
             $stmt->close();
@@ -247,28 +261,95 @@
         }
     }
 
-    function createUserNodeRelation($id_user,$id_node){
+function readUserandNode($id_node){
+
+    $conn = getConn();
+
+    if ($conn){
+        $results = $conn->query("SELECT `likes`,`deslike`,`name`,`table`.`username` from `node`,(select `username`,`id_facebook` from `users`) AS `table` where `node`.`id` = 1 and `table`.`id_facebook` = `id_user`
+");
+        echo "DAMMIT";
+        if ($results){
+            echo "THERE IS SHIT";
+        }
+        print_r($results);
+        /*if (!($stmt = $conn->prepare(""))) {
+                echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+            }
+
+            if (!$stmt->bind_param('i',$id_node)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+            */
+            /*
+            $stmt->bind_result($likes,$dislikes,$name,$username);
+
+
+            while($stmt->fetch()) {
+
+                echo "username = ". $username;
+
+
+            }*/
+
+        }
+    }
+
+    function readNodeSons($id_node){
 
         $conn = getConn();
 
         if ($conn){
 
-            if (!($stmt = $conn->prepare("INSERT INTO `user_node` (`id_user`,`id_node`) VALUES (?,?)"))) {
+            if (!($stmt = $conn->prepare("SELECT `id_son` FROM `node_sons` where id_node =  ?;"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
-            if (!$stmt->bind_param('ii',$id_user, $id_node)) {
+            if (!$stmt->bind_param('i',$id_node)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-
             }
+
+
             if (!$stmt->execute()) {
                 echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             }
 
+            $stmt->bind_result($id_son);
+
+            $array_sons = array();
+
+#            while($stmt->fetch()) {
+
+                #$array_son = readNodeSons($id_son);
+
+                #array_push($array_sons,$array_son);
+
+
+#            }
+            //select likes,dislikes,name,username.name from `node`,(select `name`,'id_facebook' from users) AS username where id_node = ? and username.id_facebook = id_node;
+
+            $node_and_user = readUserandNode($id_node);
+
+            //SELECT id_node (father)
+            //vou buscar info necessaria para coloccar no array
+
+            #$info = readNode($id_node);
+            #info_user = readUser($id_user);
+
+
+            #$arr = array('idea' => $info["nome"], 'likes' => $info["likes"], 'dislikes' => $info["dislikes"],"username":=>$info_user["username"], "parents"=>$array_sons);
+
+
+
+
             $stmt->close();
 
         }
-
     }
 
 
@@ -300,37 +381,6 @@
 
 
     }
-
-    function readTree($id_raiz){
-
-        $conn = getConn();
-
-        if ($conn){
-
-            if (!($stmt = $conn->prepare("SELECT * FROM `tree` where id_raiz =  ?;"))) {
-                echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
-            }
-
-            if (!$stmt->bind_param('i',$id_raiz)) {
-                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-
-            if (!$stmt->execute()) {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-            $results = $stmt->get_result();
-
-            $stmt->close();
-
-        }
-    }
-
-    function readALlNodes($id_node){
-
-    }
-
 
 
 

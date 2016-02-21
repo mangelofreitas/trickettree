@@ -1,46 +1,46 @@
 {
-  "name": "Clifford Shanks",
-  "born": 1862,
-  "died": 1906,
-  "location": "Petersburg, VA",
+  "idea": "Clifford Shanks",
+  "likes": 1862,
+  "dislikes": 1906,
+  "username": "Petersburg, VA",
   "parents": [
     {
-      "name": "James Shanks",
-      "born": 1831,
-      "died": 1884,
-      "location": "Petersburg, VA",
+      "idea": "James Shanks",
+      "likes": 1831,
+      "dislikes": 1884,
+      "username": "Petersburg, VA",
       "parents": [
         {
-          "name": "Robert Shanks",
-          "born": 1781,
-          "died": 1871,
-          "location": "Ireland/Petersburg, VA"
+          "idea": "Robert Shanks",
+          "likes": 1781,
+          "dislikes": 1871,
+          "username": "Ireland/Petersburg, VA"
         },
         {
-          "name": "Elizabeth Shanks",
-          "born": 1795,
-          "died": 1871,
-          "location": "Ireland/Petersburg, VA"
+          "idea": "Elizabeth Shanks",
+          "likes": 1795,
+          "dislikes": 1871,
+          "username": "Ireland/Petersburg, VA"
         }
       ]
     },
     {
-      "name": "Ann Emily Brown",
-      "born": 1826,
-      "died": 1866,
-      "location": "Brunswick/Petersburg, VA",
+      "idea": "Ann Emily Brown",
+      "likes": 1826,
+      "dislikes": 1866,
+      "username": "Brunswick/Petersburg, VA",
       "parents": [
         {
-          "name": "Henry Brown",
-          "born": 1792,
-          "died": 1845,
-          "location": "Montgomery, NC"
+          "idea": "Henry Brown",
+          "likes": 1792,
+          "dislikes": 1845,
+          "username": "Montgomery, NC"
         },
         {
-          "name": "Sarah Houchins",
-          "born": 1793,
-          "died": 1882,
-          "location": "Montgomery, NC"
+          "idea": "Sarah Houchins",
+          "likes": 1793,
+          "dislikes": 1882,
+          "username": "Montgomery, NC"
         }
       ]
     }
