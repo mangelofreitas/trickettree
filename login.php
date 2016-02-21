@@ -16,11 +16,11 @@
 	{
 		$header = $_SERVER['REQUEST_URI'];
 		$header = str_replace("index.php","",$header);
-		$loginUrl = $helper->getLoginUrl('http://localhost'.$header.'profile.php', $permissions);
+		$loginUrl = $helper->getLoginUrl('http://localhost/'.$header.'profile.php', $permissions);
 	}
 	else
 	{
-		$loginUrl = $helper->getLoginUrl('http://localhost'.$_SERVER['REQUEST_URI'].'profile.php', $permissions);
+		$loginUrl = $helper->getLoginUrl('http://localhost/'.$_SERVER['REQUEST_URI'].'profile.php', $permissions);
 	}
 
 

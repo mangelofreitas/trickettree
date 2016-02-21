@@ -1,8 +1,6 @@
 <?php
 
 	require_once('Facebook/autoload.php');
-	require_once('queries.php');
-
 
 	$fb = new Facebook\Facebook(
 		[
@@ -75,15 +73,6 @@
 			}
 		}
 	}
-	$_SESSION['id'] = $simpleNode['id'];
-	$user = readUserfromFacebook_id($simpleNode["id"]);
-
-	if (!$user){
-			addUser($simpleNode["id"],$simpleNode["name"],$simpleNode["email"],$simpleNode["picture"]["url"]);
-	}
-
-
-
 	//echo '<br>Logged in as ' . $userNode->getName().'<br>Picture '.$simpleNode->getField('country')//.'<br>City: '.$locationNode->getCity().'<br>Country: '.$locationNode->getCountry();
 
 ?>

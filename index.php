@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>TreeBaking</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -49,7 +49,7 @@
                 <h1><kbd>Start your own Tree or join others creating something unique! </kbd></h1>
                 <hr>
                 <p><kbd>Join our community by providing ideas and your knowledge, maybe find some coworkers for your projects</kbd> </p>
-                
+
             </div>
         </div>
     </header>
@@ -173,8 +173,7 @@
         </div>
     </aside>
 
-    <?php include('footer.php');
-	?>
+    <?php include('footer.php') ?>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -198,7 +197,7 @@
 		    	$(this).html(event.strftime('%w weeks %d days <br /> %H:%M:%S'));
 		  	});
 		</script>
-		
+
 
 
 </body>

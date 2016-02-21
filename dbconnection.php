@@ -1,7 +1,10 @@
 <?php
 
 
-    //if(!isset($_SESSION['conn'])){
+
+    include('queries.php');
+
+    if(!isset($_SESSION['conn'])){
 
 
         $servername = "localhost";
@@ -17,6 +20,6 @@
         {
             $_SESSION['conn'] = $conn;
         }
-    //}
+    }
 
 ?>

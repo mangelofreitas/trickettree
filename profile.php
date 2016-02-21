@@ -49,7 +49,7 @@
     <?php include('headergreen.php') ?>
 	<section id="services">
     <div class="container">
-      <div style="background-image:url(<?php echo $_SESSION['picture'] ?> )" class="profile-image span3 well">
+      <div style="background-image:url(<?php echo $_SESSION['picture'] ?> )" class="span3 well profile-image">
           <center>
           <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src=<?php echo $_SESSION['picture'] ?> name="aboutme" width="140" height="140" class="img-circle"></a>
           <h3><?php echo $_SESSION['name'] ?></h3>
@@ -78,31 +78,21 @@
                       <center>
                       <img src=<?php echo $_SESSION['picture'] ?> name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
                       <h3 class="media-heading"><?php echo $_SESSION['name'] ?> Sixpack <small>USA</small></h3>
-                      <span><strong>Skills: </strong></span>
-                          <span class="label label-warning">HTML5/CSS</span>
-                          <span class="label label-info">Adobe CS 5.5</span>
-                          <span class="label label-info">Microsoft Office</span>
-                          <span class="label label-success">Windows XP, Vista, 7</span>
-
-                      </center>
-											<p></p>
-											<center>
-												<span><button type="button" class="btn btn-sm btn-primary"> Add more </button></span>
-										  </center>
+                      				  </center>
                       <hr>
                       <center>
-                      <p class="text-left"><strong>Bio: </strong><br>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
+                      <p class="text-left"><strong>Description: </strong><br>
+                          </p>
                       <br>
-                      </center>
+                      </center><p id="description">Grande mano!</p>
 											<center>
-												<span><button type="button" class="btn btn-sm btn-primary"> Edit bio </button></span>
+												<span id="buttonSpan" ><button onclick="editBio()" id="edit" type="button" class="btn btn-sm btn-primary"> Edit bio </button></span>
 											</center>
 
                   </div>
                   <div class="modal-footer">
                       <center>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about Joe</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough</button>
                       </center>
                   </div>
               </div>
@@ -211,6 +201,76 @@
 </section>
 
 
+	<script type="text/javascript">
+
+		var textBefore;
+
+		function editBio()
+		{
+			var description = document.getElementById("description");
+			var text = description.innerHTML;
+			textBefore = text;
+			$('#description').replaceWith('<input id="description" class="form-control" value ="'+text+'" />');
+			var editButton = document.getElementById("edit");
+			editButton.parentNode.removeChild(editButton);
+			var span = document.getElementById("buttonSpan");
+			var btnSave = document.createElement("button");
+			btnSave.className = "btn btn-sm btn-primary";
+			btnSave.type = "button";
+			btnSave.id="btnSave";
+			btnSave.innerHTML = "Save";
+			btnSave.onclick = save;
+			span.appendChild(btnSave);
+			var btnCancel = document.createElement("button");
+			btnCancel.className = "btn btn-sm btn-danger";
+			btnCancel.type = "button";
+			btnCancel.id = "btnCancel";
+			btnCancel.innerHTML = "cancel";
+			btnCancel.onclick = cancel;
+			span.appendChild(btnCancel);
+		}
+
+		function cancel()
+		{
+			var description = document.getElementById("description");
+			$('#description').replaceWith('<p id="description">'+textBefore+'</>');
+			var btnSave = document.getElementById("btnSave");
+			btnSave.parentNode.removeChild(btnSave);
+			var btnCancel = document.getElementById("btnCancel");
+			btnCancel.parentNode.removeChild(btnCancel);
+			var btnEdit = document.createElement("button");
+			btnEdit.className = "btn btn-sm btn-primary";
+			btnEdit.type = "button";
+			btnEdit.id="edit";
+			btnEdit.onclick = editBio;
+			btnEdit.innerHTML = "Edit Bio";
+			var span = document.getElementById("buttonSpan");
+			span.appendChild(btnEdit);
+
+		}
+
+		function save()
+		{
+			var description = document.getElementById("description");
+			var text = description.value;
+			$('#description').replaceWith('<p id="description">'+text+'</>');
+			var btnSave = document.getElementById("btnSave");
+			btnSave.parentNode.removeChild(btnSave);
+			var btnCancel = document.getElementById("btnCancel");
+			btnCancel.parentNode.removeChild(btnCancel);
+			var btnEdit = document.createElement("button");
+			btnEdit.className = "btn btn-sm btn-primary";
+			btnEdit.type = "button";
+			btnEdit.id="edit";
+			btnEdit.onclick = editBio;
+			btnEdit.innerHTML = "Edit Bio";
+			var span = document.getElementById("buttonSpan");
+			span.appendChild(btnEdit);
+
+		}
+
+
+	</script>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

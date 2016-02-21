@@ -9,7 +9,3 @@
         </div>
     </div>
 </section>
-
-<?php
-unset($_SESSION['conn']);
-?>
