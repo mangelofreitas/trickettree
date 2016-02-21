@@ -23,12 +23,10 @@
                     </form>
                 </div>
                 <li class="active"><a href="communitytree.php">Community Tree</a></li>
-<<<<<<< HEAD
-                <li class="active"><a href="treecreation.php">Create Tree</a></li>
-=======
+
                 <li class="active"><a href="#" data-toggle="modal" data-target="#createModal">Create Tree</a></li>
 
->>>>>>> 1acbbc3ce7ea60363eeeb821de95f22891728ae2
+
                 <li class="login"><?php if(!isset($_SESSION['loggedin']))
                                         {
                                             include('login.php');
