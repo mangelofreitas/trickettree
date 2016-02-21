@@ -11,14 +11,34 @@
             <a class="navbar-brand page-scroll" href="#page-top">Tree Baking</a>
         </div>
 
+
+        <script type="text/javascript">
+        // Using jQuery.
+
+        $(function() {
+            $('form').each(function() {
+                $(this).find('input').keypress(function(e) {
+                    // Enter pressed?
+                    if(e.which == 10 || e.which == 13) {
+                        this.form.submit();
+                    }
+                });
+
+                $(this).find('input[type=submit]').hide();
+            });
+        });
+        </script>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
 
                 <div class="col-sm-3 col-md-3">
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" role="search" method ="post" action ="search.php">
                         <div class="input-group">
-                            <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Search ">
+
+                            <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Search a User" name = "searchName">
+
                         </div>
                     </form>
                 </div>
@@ -30,6 +50,8 @@
                     echo '<li class="active"><a href="profile.php">'.$_SESSION['name'].'</a></li>';
                 }
                 ?>
+                <li class="active"><a href="#" data-toggle="modal" data-target="#createModal">Create Tree</a></li>
+
                 <li class="login"><?php if(!isset($_SESSION['loggedin']))
                                         {
                                             include('login.php');
@@ -59,6 +81,9 @@
         <div class="modal-body">
           <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Root of the idea (ex: Music App)">
           <textarea class="form-control" rows="5" id="comment" placeholder="Description of the idea (if it needs one)"></textarea>
+
+          <input type="text" class="form-control" name= "rootName" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Root of the idea (ex: Music App)" required="true">
+          <input type="text" class="form-control" name= "rootDescription" style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Description of the idea">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-primary">Grow Tree! </button>

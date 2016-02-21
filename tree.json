@@ -1,0 +1,48 @@
+{
+  "idea": "Clifford Shanks",
+  "likes": 1862,
+  "dislikes": 1906,
+  "username": "Petersburg, VA",
+  "parents": [
+    {
+      "idea": "James Shanks",
+      "likes": 1831,
+      "dislikes": 1884,
+      "username": "Petersburg, VA",
+      "parents": [
+        {
+          "idea": "Robert Shanks",
+          "likes": 1781,
+          "dislikes": 1871,
+          "username": "Ireland/Petersburg, VA"
+        },
+        {
+          "idea": "Elizabeth Shanks",
+          "likes": 1795,
+          "dislikes": 1871,
+          "username": "Ireland/Petersburg, VA"
+        }
+      ]
+    },
+    {
+      "idea": "Ann Emily Brown",
+      "likes": 1826,
+      "dislikes": 1866,
+      "username": "Brunswick/Petersburg, VA",
+      "parents": [
+        {
+          "idea": "Henry Brown",
+          "likes": 1792,
+          "dislikes": 1845,
+          "username": "Montgomery, NC"
+        },
+        {
+          "idea": "Sarah Houchins",
+          "likes": 1793,
+          "dislikes": 1882,
+          "username": "Montgomery, NC"
+        }
+      ]
+    }
+  ]
+}

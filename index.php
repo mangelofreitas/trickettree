@@ -1,7 +1,7 @@
 <?php
 	//verify the connection to database
 	session_start();
-    include('dbconnection.php');
+    //include('dbconnection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

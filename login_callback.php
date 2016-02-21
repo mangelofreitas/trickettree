@@ -73,6 +73,15 @@
 			}
 		}
 	}
+	$_SESSION['id'] = $simpleNode['id'];
+	$user = readUserFromFacebookID($simpleNode["id"]);
+
+	if (!$user){
+			addUser($simpleNode["id"],$simpleNode["name"],$simpleNode["email"],$simpleNode["picture"]["url"]);
+	}
+
+
+
 	//echo '<br>Logged in as ' . $userNode->getName().'<br>Picture '.$simpleNode->getField('country')//.'<br>City: '.$locationNode->getCity().'<br>Country: '.$locationNode->getCountry();
 
 ?>
