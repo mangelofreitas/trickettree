@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Fev-2016 às 20:26
+-- Generation Time: 21-Fev-2016 às 02:02
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -28,24 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `node` (
   `ID` int(11) NOT NULL,
-  `NAME` varchar(128) NOT NULL,
+  `ID_USER` bigint(20) NOT NULL,
   `ID_FATHER` int(11) DEFAULT NULL,
-  `DESCRIPTION` text NOT NULL
+  `NAME` varchar(200) NOT NULL,
+  `DESCRIPTION` text,
+  `LIKES` int(11) DEFAULT '0',
+  `DESLIKE` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tree`
+-- Estrutura da tabela `node_sons`
 --
 
-CREATE TABLE `tree` (
-  `ID` bigint(20) UNSIGNED NOT NULL,
-  `ID_RAIZ` int(11) NOT NULL,
-  `CREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `DEADLINE` datetime NOT NULL,
-  `ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
-  `ID_USER` int(11) NOT NULL
+CREATE TABLE `node_sons` (
+  `ID_NODE` int(11) NOT NULL,
+  `ID_SON` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -55,36 +54,30 @@ CREATE TABLE `tree` (
 --
 
 CREATE TABLE `users` (
-  `ID` int(11) NOT NULL,
   `ID_FACEBOOK` bigint(20) NOT NULL,
   `USERNAME` varchar(64) NOT NULL,
   `DESCRIPTION` text,
-  `EMAIL` varchar(200),
+  `EMAIL` varchar(200) DEFAULT NULL,
   `PROFILE_PICTURE` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `user_node`
+-- Extraindo dados da tabela `users`
 --
 
-CREATE TABLE `user_node` (
-  `ID_NODE` int(11) NOT NULL,
-  `ID_USER` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `users` (`ID_FACEBOOK`, `USERNAME`, `DESCRIPTION`, `EMAIL`, `PROFILE_PICTURE`) VALUES
+(1155278177838126, 'TomÃ¡s Carvalho', NULL, NULL, 'https://scontent.xx.fbcdn.net/hprofile-xlp1/v/t1.0-1/p200x200/12717613_1151716791527598_2134512684508923854_n.jpg?oh=154de9a7f3cf1972ba33dee1963f5b4b&oe=57232336');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `vote`
+-- Estrutura da tabela `vote_user`
 --
 
-CREATE TABLE `vote` (
-  `ID_USER` int(11) NOT NULL,
+CREATE TABLE `vote_user` (
+  `ID_USER` bigint(20) NOT NULL,
   `ID_NODE` int(11) NOT NULL,
-  `COUNTER` int(11) NOT NULL DEFAULT '0',
-  `LIKES` int(11) NOT NULL DEFAULT '0'
+  `LIKED` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -96,34 +89,26 @@ CREATE TABLE `vote` (
 --
 ALTER TABLE `node`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `ID` (`ID`),
+  ADD KEY `ID_USER` (`ID_USER`),
   ADD KEY `ID_FATHER` (`ID_FATHER`);
 
 --
--- Indexes for table `tree`
+-- Indexes for table `node_sons`
 --
-ALTER TABLE `tree`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `ID` (`ID`),
-  ADD KEY `ID_RAIZ` (`ID_RAIZ`);
+ALTER TABLE `node_sons`
+  ADD KEY `ID_NODE` (`ID_NODE`),
+  ADD KEY `ID_SON` (`ID_SON`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID_FACEBOOK`);
 
 --
--- Indexes for table `user_node`
+-- Indexes for table `vote_user`
 --
-ALTER TABLE `user_node`
-  ADD KEY `ID_NODE` (`ID_NODE`),
-  ADD KEY `ID_USER` (`ID_USER`);
-
---
--- Indexes for table `vote`
---
-ALTER TABLE `vote`
+ALTER TABLE `vote_user`
   ADD KEY `ID_USER` (`ID_USER`),
   ADD KEY `ID_NODE` (`ID_NODE`);
 
@@ -137,16 +122,6 @@ ALTER TABLE `vote`
 ALTER TABLE `node`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tree`
---
-ALTER TABLE `tree`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
 -- Constraints for dumped tables
 --
 
@@ -154,27 +129,22 @@ ALTER TABLE `users`
 -- Limitadores para a tabela `node`
 --
 ALTER TABLE `node`
-  ADD CONSTRAINT `node_ibfk_1` FOREIGN KEY (`ID_FATHER`) REFERENCES `node` (`ID`);
+  ADD CONSTRAINT `node_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID_FACEBOOK`),
+  ADD CONSTRAINT `node_ibfk_2` FOREIGN KEY (`ID_FATHER`) REFERENCES `node` (`ID`);
 
 --
--- Limitadores para a tabela `tree`
+-- Limitadores para a tabela `node_sons`
 --
-ALTER TABLE `tree`
-  ADD CONSTRAINT `tree_ibfk_1` FOREIGN KEY (`ID_RAIZ`) REFERENCES `node` (`ID`);
+ALTER TABLE `node_sons`
+  ADD CONSTRAINT `node_sons_ibfk_1` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`),
+  ADD CONSTRAINT `node_sons_ibfk_2` FOREIGN KEY (`ID_SON`) REFERENCES `node` (`ID`);
 
 --
--- Limitadores para a tabela `user_node`
+-- Limitadores para a tabela `vote_user`
 --
-ALTER TABLE `user_node`
-  ADD CONSTRAINT `user_node_ibfk_2` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`),
-  ADD CONSTRAINT `user_node_ibfk_3` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID`);
-
---
--- Limitadores para a tabela `vote`
---
-ALTER TABLE `vote`
-  ADD CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID`),
-  ADD CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`);
+ALTER TABLE `vote_user`
+  ADD CONSTRAINT `vote_user_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID_FACEBOOK`),
+  ADD CONSTRAINT `vote_user_ibfk_2` FOREIGN KEY (`ID_NODE`) REFERENCES `node` (`ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

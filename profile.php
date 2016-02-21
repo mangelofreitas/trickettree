@@ -47,7 +47,7 @@
 <body id="page-top">
 
     <?php include('headergreen.php') ?>
-<section id="services">
+	<section id="services">
     <div class="container">
       <div style="background-image:url(<?php echo $_SESSION['picture'] ?> )" class="profile-image span3 well">
           <center>

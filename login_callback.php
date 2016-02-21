@@ -75,7 +75,7 @@
 			}
 		}
 	}
-
+	$_SESSION['id'] = $simpleNode['id'];
 	$user = readUserfromFacebook_id($simpleNode["id"]);
 
 	if (!$user){
