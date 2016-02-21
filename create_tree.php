@@ -11,5 +11,6 @@
     $rootDescription = isset($_POST['rootDescription'])?$_POST['rootDescription'] : null;
     $insert_root_sql = "INSERT INTO NODE (NAME, DESCRIPTION, ID_USER) VALUES ('".$rootName."', '".$rootDescription."',".$user.");";
     $result = $conn->query($insert_root_sql);
-    header("Location:index.php");
+    echo $result;
+    //header("Location:index.php");
 ?>
