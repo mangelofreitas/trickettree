@@ -3,23 +3,27 @@
 
     //if(!isset($_SESSION['conn'])){
 
+    function createConn()
+    {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+        $dbname = "shifttree";
 
-    $dbname = "shifttree";
+            // Create connection
+        $conn = new mysqli($servername, $username, $password,$dbname);
 
-        // Create connection
-    $conn = new mysqli($servername, $username, $password,$dbname);
-
-    if ($conn->ping())
+        if ($conn->ping())
         {
             $_SESSION['conn'] = $conn;
         }
+        return $conn;
+    }
+    
     //}
 
-    require("queries.php");
+    //require("queries.php");
 
     /*addUser(1000,"TELMO","no_email","url_cenas");
     addUser(2000,"JOAO","no_email","url_cenas");
@@ -29,9 +33,9 @@
     addUser(6000,"ANDRE","no_email","url_cenas");
     addUser(7000,"ANDRE","no_email","url_cenas");
     addUser(8000,"ANDRE","no_email","url_cenas");
-    addUser(9000,"ANDRE","no_email","url_cenas");
+    addUser(9000,"ANDRE","no_email","url_cenas");*/
 
-    */
+    
 
     //$id_user,$id_father,$name,$description
     /*createNode(1000,NULL,"IDEIA 1","cenas");
@@ -43,10 +47,7 @@
     createNode(6000,2,"IDEIA 6","jonas");
     createNode(7000,3,"IDEIA 7","jonas");
     createNode(3000,2,"IDEIA 9","jonas");
-
-    */
-
-    readNodeSons(1);
+*/
 
 
 ?>

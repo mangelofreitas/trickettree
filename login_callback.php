@@ -76,7 +76,7 @@
 		}
 	}
 	$_SESSION['id'] = $simpleNode['id'];
-	$user = readUserfromFacebook_id($simpleNode["id"]);
+	$user = readUserFromFacebookID($simpleNode["id"]);
 
 	if (!$user){
 			addUser($simpleNode["id"],$simpleNode["name"],$simpleNode["email"],$simpleNode["picture"]["url"]);

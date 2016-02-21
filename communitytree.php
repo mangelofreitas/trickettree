@@ -1,9 +1,9 @@
 <?php
 
     session_start();
-
-
-
+    include("queries.php");
+    $json = json_encode(readNodeSons(2));
+    file_put_contents('test.json', print_r($json, true));
 ?>
 
 
@@ -74,7 +74,8 @@ text {
 
 <body id="page-top">
 
-    <?php include ("headergreen.php"); ?>
+    <?php 
+    include ("headergreen.php"); ?>
 
 
 
