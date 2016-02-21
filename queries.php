@@ -1,6 +1,9 @@
 <?php
 
+
     function getConn(){
+
+        require_once("dbconnection.php");
 
         if (isset($_SESSION['conn'])){
             $conn = $_SESSION['conn'];
@@ -69,7 +72,7 @@
                                         );
                         array_push($final_array,$data_json);
                     }
-                    
+
                     return $final_array;
                 } else {
                     return NULL;
@@ -295,6 +298,36 @@
 
         }
 
+
+    }
+
+    function readTree($id_raiz){
+
+        $conn = getConn();
+
+        if ($conn){
+
+            if (!($stmt = $conn->prepare("SELECT * FROM `tree` where id_raiz =  ?;"))) {
+                echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+            }
+
+            if (!$stmt->bind_param('i',$id_raiz)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            $results = $stmt->get_result();
+
+            $stmt->close();
+
+        }
+    }
+
+    function readALlNodes($id_node){
 
     }
 

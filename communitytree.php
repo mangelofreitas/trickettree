@@ -1,4 +1,73 @@
+<?php
+
+    session_start();
+    require('dbconnection.php');
+    require("queries.php");
+
+
+    addUser(1000,"TELMO","","string");
+    addUser(2000,"JOAO","","string");
+    addUser(3000,"ANDRE","","string");
+    addUser(5000,"Marques","","string");
+    addUser(4000,"Hernas","","string");
+    addUser(6000,"JOANA","","string");
+    addUser(7000,"ANTonio","","string");
+    addUser(8000,"FONSECA","","string");
+
+    createNode("FANTASTIC IDEAs",NULL);
+    createNode("Intelegent IDEAs",NULL);
+    createNode("DAMMIT IDEAs",NULL);
+    createNode("Wonderful IDEAs",NULL);
+
+    createUserNodeRelation(1,1);
+    createUserNodeRelation(2,2);
+    createUserNodeRelation(3,3);
+    createUserNodeRelation(4,4);
+    $x = (new \DateTime());
+
+    createTree(2,$x,6);
+
+    $json_data = readTree(1);
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+text {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.about {
+  fill: #777;
+  font-size: smaller;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style>
+
 <html lang="en">
 
 <head>
@@ -24,7 +93,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/creative.css" type="text/css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,7 +140,6 @@
     </nav>
 
 
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -87,6 +154,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
 
-</body>
 
-</html>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/treeData.js"></script>
+
+
+</script>
