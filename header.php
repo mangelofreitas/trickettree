@@ -11,19 +11,39 @@
             <a class="navbar-brand page-scroll" href="#page-top">Tree Baking</a>
         </div>
 
+
+        <script type="text/javascript">
+        // Using jQuery.
+
+        $(function() {
+            $('form').each(function() {
+                $(this).find('input').keypress(function(e) {
+                    // Enter pressed?
+                    if(e.which == 10 || e.which == 13) {
+                        this.form.submit();
+                    }
+                });
+
+                $(this).find('input[type=submit]').hide();
+            });
+        });
+        </script>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="index.php">Notifications</a></li>
                 <div class="col-sm-3 col-md-3">
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" role="search" method ="post" action ="search.php">
                         <div class="input-group">
-                            <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Search a Tree">
+                            <input style="background-color:transparent;border-color:transparent" type="text" class="form-control" placeholder="Search a User" name = "searchName">
+
                         </div>
                     </form>
                 </div>
                 <li class="active"><a href="communitytree.php">Community Tree</a></li>
                 <li class="active"><a href="#" data-toggle="modal" data-target="#createModal">Create Tree</a></li>
+
 
                 <li class="login"><?php if(!isset($_SESSION['loggedin']))
                                         {

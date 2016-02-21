@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Fev-2016 às 02:02
+-- Generation Time: 21-Fev-2016 às 02:27
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -23,6 +23,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `feedback_users`
+--
+
+CREATE TABLE `feedback_users` (
+  `ID_USER_VOTING` bigint(20) NOT NULL,
+  `ID_USER_VOTED` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `node`
 --
 
@@ -35,6 +46,13 @@ CREATE TABLE `node` (
   `LIKES` int(11) DEFAULT '0',
   `DESLIKE` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `node`
+--
+
+INSERT INTO `node` (`ID`, `ID_USER`, `ID_FATHER`, `NAME`, `DESCRIPTION`, `LIKES`, `DESLIKE`) VALUES
+(4, 1155278177838126, NULL, 'First', 'Tree', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -58,15 +76,17 @@ CREATE TABLE `users` (
   `USERNAME` varchar(64) NOT NULL,
   `DESCRIPTION` text,
   `EMAIL` varchar(200) DEFAULT NULL,
-  `PROFILE_PICTURE` varchar(200) NOT NULL
+  `PROFILE_PICTURE` varchar(200) NOT NULL,
+  `LIKES` int(11) DEFAULT '0',
+  `DESLIKES` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`ID_FACEBOOK`, `USERNAME`, `DESCRIPTION`, `EMAIL`, `PROFILE_PICTURE`) VALUES
-(1155278177838126, 'TomÃ¡s Carvalho', NULL, NULL, 'https://scontent.xx.fbcdn.net/hprofile-xlp1/v/t1.0-1/p200x200/12717613_1151716791527598_2134512684508923854_n.jpg?oh=154de9a7f3cf1972ba33dee1963f5b4b&oe=57232336');
+INSERT INTO `users` (`ID_FACEBOOK`, `USERNAME`, `DESCRIPTION`, `EMAIL`, `PROFILE_PICTURE`, `LIKES`, `DESLIKES`) VALUES
+(1155278177838126, 'TomÃ¡s Carvalho', NULL, NULL, 'https://scontent.xx.fbcdn.net/hprofile-xlp1/v/t1.0-1/p200x200/12717613_1151716791527598_2134512684508923854_n.jpg?oh=154de9a7f3cf1972ba33dee1963f5b4b&oe=57232336', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -83,6 +103,13 @@ CREATE TABLE `vote_user` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `feedback_users`
+--
+ALTER TABLE `feedback_users`
+  ADD KEY `ID_USER_VOTING` (`ID_USER_VOTING`),
+  ADD KEY `ID_USER_VOTED` (`ID_USER_VOTED`);
 
 --
 -- Indexes for table `node`
@@ -120,10 +147,17 @@ ALTER TABLE `vote_user`
 -- AUTO_INCREMENT for table `node`
 --
 ALTER TABLE `node`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Limitadores para a tabela `feedback_users`
+--
+ALTER TABLE `feedback_users`
+  ADD CONSTRAINT `feedback_users_ibfk_1` FOREIGN KEY (`ID_USER_VOTING`) REFERENCES `users` (`ID_FACEBOOK`),
+  ADD CONSTRAINT `feedback_users_ibfk_2` FOREIGN KEY (`ID_USER_VOTED`) REFERENCES `users` (`ID_FACEBOOK`);
 
 --
 -- Limitadores para a tabela `node`
