@@ -14,7 +14,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("tree.json", function(error, json) {
+d3.json("test.json", function(error, json) {
   if (error) throw error;
 
   var nodes = tree.nodes(json);

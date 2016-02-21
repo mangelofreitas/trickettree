@@ -4,14 +4,14 @@
     function getConn(){
 
         require_once("dbconnection.php");
-
-        if (isset($_SESSION['conn'])){
+        return createConn();
+        /*if (isset($_SESSION['conn'])){
             $conn = $_SESSION['conn'];
 
             return $conn;
         }
 
-        return NULL;
+        return NULL;*/
 
     }
 
@@ -113,7 +113,6 @@
                 while($row = $results->fetch_assoc()) {
 
                     $data_json = array(
-                                    "id" => $row["ID"],
                                     "username" => $row["USERNAME"],
                                     "id_facebook" => $row["ID_FACEBOOK"],
                                     "email" => $row["EMAIL"],
@@ -156,7 +155,6 @@
                 while($row = $results->fetch_assoc()) {
 
                     $data_json = array(
-                                    "id" => $row["ID"],
                                     "username" => $row["USERNAME"],
                                     "id_facebook" => $row["ID_FACEBOOK"],
                                     "email" => $row["EMAIL"],
@@ -264,16 +262,8 @@
 function readUserandNode($id_node){
 
     $conn = getConn();
-
     if ($conn){
-        $results = $conn->query("SELECT `likes`,`deslike`,`name`,`table`.`username` from `node`,(select `username`,`id_facebook` from `users`) AS `table` where `node`.`id` = 1 and `table`.`id_facebook` = `id_user`
-");
-        echo "DAMMIT";
-        if ($results){
-            echo "THERE IS SHIT";
-        }
-        print_r($results);
-        /*if (!($stmt = $conn->prepare(""))) {
+            if (!($stmt = $conn->prepare("SELECT `likes`,`deslike`,`name`, `id_user` from `node` where `id` = ?;"))) {
                 echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
             }
 
@@ -285,17 +275,16 @@ function readUserandNode($id_node){
             if (!$stmt->execute()) {
                 echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             }
-            */
-            /*
-            $stmt->bind_result($likes,$dislikes,$name,$username);
+            
+            $stmt->bind_result($likes,$dislikes,$name,$user);
 
 
-            while($stmt->fetch()) {
-
-                echo "username = ". $username;
-
-
-            }*/
+            if($stmt->fetch()) 
+            {
+                $array = readUserFromFacebookID($user);
+                $arr = array('idea' => $name, 'likes' => $likes, 'dislikes' => $dislikes, "username" => $array[0]['username'], "parents"=> array());
+                return $arr;
+            }
 
         }
     }
@@ -323,17 +312,18 @@ function readUserandNode($id_node){
 
             $array_sons = array();
 
-#            while($stmt->fetch()) {
+            while($stmt->fetch()) {
 
-                #$array_son = readNodeSons($id_son);
+                $array_son = readNodeSons($id_son);
 
-                #array_push($array_sons,$array_son);
+                array_push($array_sons,$array_son);
 
 
-#            }
+            }
             //select likes,dislikes,name,username.name from `node`,(select `name`,'id_facebook' from users) AS username where id_node = ? and username.id_facebook = id_node;
 
             $node_and_user = readUserandNode($id_node);
+            $node_and_user['parents'] = $array_sons;
 
             //SELECT id_node (father)
             //vou buscar info necessaria para coloccar no array
@@ -344,8 +334,7 @@ function readUserandNode($id_node){
 
             #$arr = array('idea' => $info["nome"], 'likes' => $info["likes"], 'dislikes' => $info["dislikes"],"username":=>$info_user["username"], "parents"=>$array_sons);
 
-
-
+            return $node_and_user;
 
             $stmt->close();
 
